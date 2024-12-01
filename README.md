@@ -46,11 +46,9 @@ Please refer to this repository [elerac/pyglimshow](https://github.com/elerac/py
 
 For fast capture, prepare all imaging system configuration and run the code below by using files provided in directory [fast_capture](https://github.com/shshin1210/DDSL/tree/main/fast_capture)
 
-'''
+```
 python procam_multiple_capture.py
-'''
-
-
+```
 
 We provide example of captured datasets in [dataset directory](https://github.com/shshin1210/DDSL/tree/main/dataset/data/realdata/20241114) for both stereo cameras.
 
