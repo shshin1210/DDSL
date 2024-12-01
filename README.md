@@ -58,75 +58,44 @@ Make sure files inside the cloned directory looks like:
 ```
 You may change some settings for cameras in `cam_pyspin.py`.
 
+We provide example of captured dynamic scene images in [dataset directory](https://github.com/shshin1210/DDSL/tree/main/dataset/data/realdata/20241114) for both stereo cameras.
+
 ## Depth Reconstruction
 
 We reconstruct depth by using the RAFT-Stereo. We used the code from [princeton-vl/RAFT-Stereo](https://github.com/princeton-vl/RAFT-Stereo) and earned accurate depths.
 
 Reconstructed depth results for each M DDSL patterns are provided in each dynamic scenes. [dynamic00](https://github.com/shshin1210/DDSL/tree/main/dataset/data/realdata/20241114/camera2/dynamic00)
 
-You should prepare each M DDSL pattern reconstructed depth results in `npy` file for each dynamic scenes. We provide a example of dynamic scene dataset in [DDSL Dataset](https://drive.google.com/drive/folders/17pj5KUlZ_uX8pftq2ic9OumOyM24-VNF?usp=drive_link).
+You should prepare each M DDSL pattern reconstructed depth results in `npy` file for each dynamic scenes.
+
+We provide a example of dynamic scene dataset in [Example_of_Dynamic_scene_Dataset](https://drive.google.com/drive/folders/17pj5KUlZ_uX8pftq2ic9OumOyM24-VNF?usp=drive_link).
 
 ## Hyperspectral Reconstruction
-If you have prepared all datasets, start reconstructing hyperspectral reflectance:
+For Hyperspectral reconstruction of dynamic scenes under group of M DDSL patterns and a single black pattern, we need optical flow estimation.
+
+### Optical Flow
+
+![Black optical flow](https://github.com/user-attachments/assets/5b9c19fc-b99a-4e84-aa09-6e260ca8f98e)
+
+We estimate optical flow between each black pattern captured images by RAFT. We used the code from [princeton-vl/RAFT](https://github.com/princeton-vl/RAFT) please refer to this repository.
+
+If you have prepared all datasets and imaging system configurataion, start reconstructing hyperspectral reflectance:
 ```
-python hyper_sl/hyperspectral_reconstruction.py
-```
-
-replace any configuration changes in [ArgParse.py] file (https://github.com/shshin1210/DSL/blob/main/hyper_sl/utils/ArgParser.py).
-
-
-
-
- We provide example of captured dynamic scene images in [dataset directory](https://github.com/shshin1210/DDSL/tree/main/dataset/data/realdata/20241114) for both stereo cameras.
-
-1. Scene's depth map
-
-   https://github.com/shshin1210/DSL/assets/80568500/52a04828-5dad-4c4d-9d49-382ad86a81db
-
-   - Capture a scene under binary code pattern with a specific exposure time where zoer-order light is valid and first-order dispersion intensity is invalid
-
-   - By utilizing conventional structured light decoding method, you should be able to prepare depth reconstructed result. Save the depth result as npy file.
-      
-2. Scene under white scan line pattern
-
-   https://github.com/shshin1210/DSL/assets/80568500/c4c52964-c5c3-4915-a6ee-606ef3420bf6
-   
-   - Capture the scene under white scan line pattern with two different intensity pattern values and exposure time.
-   
-   - Save it in `path_to_ldr_exp1`, `path_to_ldr_exp2`.
-
-4. Scene under black pattern and white pattern
-   
-   We need scene captured under black pattern with two different intensity pattern values and exposure time same as step 2.
-
-   - Save it in `path_to_black_exp1`, `path_to_black_exp2`.
-   
-   Also, capture the scene under white pattern under two different intensity pattern values to calculate the radiance weight (normalization) for two different settings same as step 2.
-
-   - Save it in `path_to_intensity1`, `path_to_intensity2`.
-
-```
-dataset
-|-- depth.npy
-|-- intensity1
-|-- intensity2
-|-- black_exposure1
-|-- black_exposure2
-|-- ldr_exposure1
-    |-- scene under white scanline pattern 0.png
-    |-- scene under white scanline pattern 1.png
-    |-- ...
-|-- ldr_exposure2
-    |-- scene under white scanline pattern 0.png
-    |-- scene under white scanline pattern 1.png
-    |-- ...
+python hyp_recon_dynamic.py
 ```
 
-## Hyperspectral Reconstruction
-If you have prepared all datasets, start reconstructing hyperspectral reflectance:
-```
-python hyper_sl/hyperspectral_reconstruction.py
-```
+replace any configuration changes in ArgumentParser.
 
-replace any configuration changes in [ArgParse.py] file (https://github.com/shshin1210/DSL/blob/main/hyper_sl/utils/ArgParser.py).
+Please make sure each methods RAFT, RAFT-Stereo, DDSL are places as:
+
+```
+DDSL
+|-- dataset
+|-- fast_capture
+|-- hyp_recon_dynamic.py
+RAFT
+|-- ...
+RAFT-Stereo
+|-- ...
+```
 
