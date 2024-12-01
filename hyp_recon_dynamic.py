@@ -49,7 +49,7 @@ class HypReconDynamic():
         self.gaussian_blur = tf.GaussianBlur(kernel_size=(7,7), sigma=(3,3))
 
         # dsl back ward mapping function
-        self.first_proj_col_all = np.load((os.path.join(self.npy_dir%self.args.cal_date, 'x_first_illum_idx_final_crop.npy'))).reshape(len(self.depth_arange), len(self.wvls), self.cam_H*self.cam_W)
+        self.first_proj_col_all = np.load((os.path.join(self.npy_dir%self.args.cal_date, 'dispersive_aware_model.npy'))).reshape(len(self.depth_arange), len(self.wvls), self.cam_H*self.cam_W)
         print('full back ward mapping model loaded...')
 
     # Bring radiometric parameters
@@ -69,13 +69,13 @@ class HypReconDynamic():
             - DG_efficiency_image_first : Diffraction grating efficiency 
         """
         
-        PEF = np.load(os.path.join(self.illum_directory_dir, '../PEF_update_new.npy'))
-        CRF = np.load(os.path.join(self.illum_directory_dir, '../CRF_update_2.npy'))
-        DG_efficiency = np.load(os.path.join(self.illum_directory_dir, '../DG_update.npy'))[:,2:][:,::2] # from 440nm, 10nm interval
+        PEF = np.load(os.path.join(self.illum_directory_dir, '../DDSL_PEF.npy'))
+        CRF = np.load(os.path.join(self.illum_directory_dir, '../DDSL_CRF.npy'))
+        DG_efficiency = np.load(os.path.join(self.illum_directory_dir, '../DDSL_DG.npy'))
         
         # DG efficiency for all pixels
         DG_efficiency_image_first = np.zeros(shape=(self.cam_H * self.cam_W, len(self.wvls)))
-        DG_efficiency_image_first[:,:] =  DG_efficiency[2]
+        DG_efficiency_image_first[:,:] =  DG_efficiency
 
         return PEF, CRF, DG_efficiency_image_first
     
