@@ -37,10 +37,14 @@ All calibrated paramters should be prepared:
 We provide an expample calibration parameters in our [DDSL Calibration Parameters](https://drive.google.com/drive/folders/17pj5KUlZ_uX8pftq2ic9OumOyM24-VNF?usp=drive_link).
 
 
-## Datasets
-You need to prepare three types of datasets for hyperspectral reconstruction using our DSL method.
+## Dataset Acquisition
+We capture dynamic scene under a group of M DDSL patterns and a single black pattern at 6.6 fps.
 
-Here are some steps to capture a single scene. Please refer to [DSL Supplementary](https://arxiv.org/pdf/2311.18287) for more details and we also provide example of captured datasets in our [DSL Calibration Parameters](https://drive.google.com/drive/folders/18HVXZuSfRsm4V31oBXS9DjdMzSNVSjcO?usp=sharing) named tedey_bear_datasets.zip.
+Here we use software synchronization using programs that displays images in Python via OpenGL. More details for fast capture software synchronization is provided in Supplementary Document.
+
+Please refer to this repository [Fast_capture](https://github.com/elerac/pyglimshow) which provides code for fast capture, and input files in directory [fast_capture](https://github.com/shshin1210/DDSL/tree/main/fast_capture) into the cloned directory.
+
+We provide example of captured datasets in [dataset directory](https://github.com/shshin1210/DDSL/tree/main/dataset/data/realdata/20241114) for both stereo cameras.
 
 1. Scene's depth map
 
