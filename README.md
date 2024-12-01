@@ -5,34 +5,36 @@ You should follow the [requirements.txt](https://github.com/shshin1210/DDSL/blob
 
 ## Installation
 ```
-git clone https://github.com/shshin1210/DSL.git
-cd DSL
+git clone https://github.com/shshin1210/DDSL.git
+cd DDSL
 pip install -r requirements.txt
 ```
 
 ## Image system configuration
-![image_system](https://github.com/shshin1210/DSL/assets/80568500/d0dc7d9e-d12b-4901-bc9c-91551f896bf1)
+![imageSystem](https://github.com/user-attachments/assets/9f30ac98-d066-490a-906d-e2cfe842db83)
 
-Prepare the DSL imaging system configuration as the figure above.
+You should prepare the DDSL imaging system configuration as the figure above.
 
-- You will need conventional RGB projector, and a RGB camera with a diffraction grating infront of the projector.
+- You will need conventional RGB projector(Epson CO-FH02), and a conventional RGB stereo cameras(FLIR GS3-U3-32S4C-C) with a diffraction grating film(Edmund 54-509) infront of the projector.
 
-- Calibration between camera-projector and camera-diffraction grating must be done in advance.
+- Calibration between camera-projector, camera-camera camera-diffraction grating must be done in advance.
 
 
 ## Calibration datasets
 
-![image](https://github.com/shshin1210/DSL/assets/80568500/2061bd98-1b70-4526-a0a8-f324585c2a6d)
+![Backward mapping model](https://github.com/user-attachments/assets/d3df4cbc-a403-4d23-9c97-0755652b2c1a)
 
-You should have a complete form of calibrated parpameters that fits to your imaging system configureation.
+We provide the process of our data-driven backward mapping model in our paper and Supplementary Document.
 
-- Camera & projector intrinsic and extrinsic paramters
+All calibrated paramters should be prepared:
+
+- Camera-camera & camera-projector intrinsic and extrinsic paramters
 
 - Camera response function & projector emission function & Diffraction grating efficiency
 
-- First-order corresponding model
+- Dispersive-aware backward model
 
-We provide an expample calibration parameters in our [DSL Calibration Parameters](https://drive.google.com/drive/folders/18HVXZuSfRsm4V31oBXS9DjdMzSNVSjcO?usp=sharing).
+We provide an expample calibration parameters in our [DDSL Calibration Parameters](https://drive.google.com/drive/folders/17pj5KUlZ_uX8pftq2ic9OumOyM24-VNF?usp=drive_link).
 
 
 ## Datasets
