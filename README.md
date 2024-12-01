@@ -46,6 +46,17 @@ Please refer to this repository [elerac/pyglimshow](https://github.com/elerac/py
 
 For fast capture, prepare all imaging system configuration and run the code below by using files provided in directory [fast_capture](https://github.com/shshin1210/DDSL/tree/main/fast_capture)
 
+Your directory should look like:
+```
+[elerac/pyglimshow cloned directory]
+|-- cloned files ...
+|-- procam_multiple_capture.py
+|-- constants.py
+|-- cam_pyspin.py
+
+```
+You may change some settings for cameras in `cam_pyspin.py`.
+
 ```
 python procam_multiple_capture.py
 ```
