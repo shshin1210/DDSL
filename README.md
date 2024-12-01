@@ -45,23 +45,39 @@ Here we use software synchronization using programs that displays images in Pyth
 Please refer to this repository [elerac/pyglimshow](https://github.com/elerac/pyglimshow) which provides code for fast capture.
 
 For fast capture, prepare all imaging system configuration and run the code below by using files provided in directory [fast_capture](https://github.com/shshin1210/DDSL/tree/main/fast_capture)
-
-Your directory should look like:
-```
-[elerac/pyglimshow cloned directory]
-|-- cloned files ...
-|-- procam_multiple_capture.py
-|-- constants.py
-|-- cam_pyspin.py
-
-```
-You may change some settings for cameras in `cam_pyspin.py`.
-
 ```
 python procam_multiple_capture.py
 ```
 
-We provide example of captured datasets in [dataset directory](https://github.com/shshin1210/DDSL/tree/main/dataset/data/realdata/20241114) for both stereo cameras.
+Make sure files inside the cloned directory looks like:
+```
+|-- cloned files ...
+|-- procam_multiple_capture.py
+|-- constants.py
+|-- cam_pyspin.py
+```
+You may change some settings for cameras in `cam_pyspin.py`.
+
+## Depth Reconstruction
+
+We reconstruct depth by using the RAFT-Stereo. We used the code from [princeton-vl/RAFT-Stereo](https://github.com/princeton-vl/RAFT-Stereo) and earned accurate depths.
+
+Reconstructed depth results for each M DDSL patterns are provided in each dynamic scenes. [dynamic00](https://github.com/shshin1210/DDSL/tree/main/dataset/data/realdata/20241114/camera2/dynamic00)
+
+You should prepare each M DDSL pattern reconstructed depth results in `npy` file for each dynamic scenes. We provide a example of dynamic scene dataset in [DDSL Dataset](https://drive.google.com/drive/folders/17pj5KUlZ_uX8pftq2ic9OumOyM24-VNF?usp=drive_link).
+
+## Hyperspectral Reconstruction
+If you have prepared all datasets, start reconstructing hyperspectral reflectance:
+```
+python hyper_sl/hyperspectral_reconstruction.py
+```
+
+replace any configuration changes in [ArgParse.py] file (https://github.com/shshin1210/DSL/blob/main/hyper_sl/utils/ArgParser.py).
+
+
+
+
+ We provide example of captured dynamic scene images in [dataset directory](https://github.com/shshin1210/DDSL/tree/main/dataset/data/realdata/20241114) for both stereo cameras.
 
 1. Scene's depth map
 
