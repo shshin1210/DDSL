@@ -7,19 +7,37 @@ import cv2
 import EasyPySpin
 import PySpin
 from screeninfo import get_monitors
-import pyglimshow.helper
 import cam_pyspin
 import constants
+
+def ddsl_pattern(num_frame, ddsl_patt_dir, black_patt_dir):
+    """ Creates sequential ddsl patterns with 1 single black image (total 14 as pairs)
+    
+    Parameters
+    ----------
+    num_frame : integer
+        The number of frames.
+    ddsl_patt_dir : string
+        The directory for ddsl pattern
+    black_patt_dir : string
+        The directory for black pattern
+    """
+    
+    num_patt_ddsl = len(os.listdir(ddsl_patt_dir))
+    ddsl_patt_list = []
+    
+    for k in range(num_frame):
+        ddsl_patt_list += [cv2.cvtColor(cv2.imread(os.path.join(ddsl_patt_dir, 'illum_%03d.png'%i)), cv2.COLOR_BGR2RGB) for i in range(num_patt_ddsl)]
+        ddsl_patt_list += [cv2.imread(os.path.join(black_patt_dir, 'black_high.png'))] # white_gray
+        # ddsl_patt_list += [cv2.imread(os.path.join(black_patt_dir, 'black.png'))]
+
+    return ddsl_patt_list
 
 def main():
     # Initialize both cameras
     serial_1 = "22312680"
     serial_2 = "22312690"
     cap = EasyPySpin.MultipleVideoCapture(serial_1, serial_2)
-
-    # # Buffer caching policy
-    # cap[0].cam.TLStream.StreamBufferHandlingMode.SetValue(PySpin.StreamBufferHandlingMode_OldestFirst)
-    # cap[1].cam.TLStream.StreamBufferHandlingMode.SetValue(PySpin.StreamBufferHandlingMode_OldestFirst)
 
     print('Height cam 1: ', cap[0].get(cv2.CAP_PROP_FRAME_HEIGHT), 'Height cam 2: ', cap[1].get(cv2.CAP_PROP_FRAME_HEIGHT))
     print('Width cam 1: ', cap[0].get(cv2.CAP_PROP_FRAME_WIDTH), 'Width cam 2: ', cap[1].get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -44,15 +62,13 @@ def main():
     monitors = get_monitors()
     for i, monitor in enumerate(monitors):
         print(f"Monitor {i}: {monitor}")
-    # Choose the monitor (the projector is Monitor 1)
     projector_monitor = monitors[constants.SCREEN_NUM]
 
     ## Projected patterns here
     # Create a list of images to display
     shape = (projector_monitor.height, projector_monitor.width, 3)
     image_list_dummy = [np.full(shape, 128, dtype=np.uint8) for _ in range(constants.NUM_DUMMY)]
-    # image_list_main = [pyglimshow.helper.create_number_image(shape, i) for i in range(constants.NUM_FRAME)]
-    image_list_main = pyglimshow.helper.ddsl_pattern(constants.NUM_FRAME, constants.PATTERN_PATH, constants.BLACK_PATH)
+    image_list_main = ddsl_pattern(constants.NUM_FRAME, constants.PATTERN_PATH, constants.BLACK_PATH)
     image_list = image_list_dummy + image_list_main + image_list_dummy
 
     ### Display image window
@@ -119,22 +135,12 @@ def main():
     
     for i, (img1, img2) in enumerate(zip(image_list_captured_1, image_list_captured_2)):
         img1 = cv2.cvtColor(img1, cv2.COLOR_BayerGB2RGB)
-        img2 = cv2.cvtColor(img2, cv2.COLOR_BayerGB2RGB) # COLOR_BayerRG2BGR
+        img2 = cv2.cvtColor(img2, cv2.COLOR_BayerGB2RGB)
         
         # 전체적인거 한번에 저장
         cv2.imwrite("%s/camera1/capture_%04d.png"%(constants.FAST_SAVE_PATH,i), img1)
         cv2.imwrite("%s/camera2/capture_%04d.png"%(constants.FAST_SAVE_PATH,i), img2)
         
-        # 40 이후로 13개씩 짤라서 저장 그리고 14번째는 black으로 저장?
-        frame_num = (i-constants.NUM_DUMMY) // (constants.NUM_PATT+1)
-        if (frame_num >= 0) and (i != constants.NUM_DUMMY) and (i <= len(image_list_captured_1) - constants.NUM_DUMMY):
-            if (i-constants.NUM_DUMMY) % (constants.NUM_PATT + 1) == 0:
-                cv2.imwrite("%s/camera1/dynamic%02d/black.png"%(constants.SCENE_FN, frame_num-1), img1)
-                cv2.imwrite("%s/camera2/dynamic%02d/black.png"%(constants.SCENE_FN, frame_num-1), img2)
-            else:
-                cv2.imwrite("%s/camera1/dynamic%02d/capture_%04d.png"%(constants.SCENE_FN, frame_num, (i-constants.NUM_DUMMY-1-(frame_num)*(constants.NUM_PATT+1))), img1)
-                cv2.imwrite("%s/camera2/dynamic%02d/capture_%04d.png"%(constants.SCENE_FN, frame_num, (i-constants.NUM_DUMMY-1-(frame_num)*(constants.NUM_PATT+1))), img2)
-
     # Destroy the OpenCV window
     cv2.destroyWindow(window_name)
 

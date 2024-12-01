@@ -3,18 +3,14 @@ import numpy as npp
 from os.path import join
 
 # camera
-# PATTERN_PATH = './FastHyp3D_pattern/testing_8patt'
 PATTERN_PATH = './experiments/FastHyp3D_pattern/testing_8patt_high'
 BLACK_PATH = './experiments/FastHyp3D_pattern'
-EMIT_TIME = 0 # ms 
-TRIGGER_TIME = 0 # msa
 SHUTTER_TIME = 9 # 3 # ms / 100ms는 0.1초
 
 WAIT_TIME = 25 # ms 25
 
 GAIN = 0  # this is log scale. /20 for conversion. 7.75db * 20, 0db - previous capture, for material capture
 BINNING_RADIUS = 2
-NUM_BUFFERS = NUM_TRIGGERS = 71
 PIXEL_FORMAT = "BayerGB16"
 ROI = [100, 60, 464, 630]
 
@@ -22,8 +18,6 @@ ROI = [100, 60, 464, 630]
 NUM_FRAME = 40
 NUM_DUMMY = 120
 FAST_SAVE_PATH = "captured_dual_cam"
-
-NUM_PATT = len(os.listdir(PATTERN_PATH))
 
 # scene parameters
 SCENE_PATH = './experiments'
@@ -34,7 +28,3 @@ SCENE_FN = SCENE_PATH + '/test' + datetime.datetime.now().strftime('_%Y_%m_%d_%H
 # screen index
 CAMERA_NUM = 0  # camera num
 SCREEN_NUM = 1  # for projector
-
-# debug
-VERBOSE = True
-SAVE_INTERM = False
