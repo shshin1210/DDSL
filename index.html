@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({            
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}            
+      });
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Dispersed Structured Light Hyperspectral 3D Imaging reconstructs high quality depth and hyperspectral information">
+  <meta name="keywords" content="Dispersed Structured Light, Hyperspectral 3D Imaging, DSL">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dispersed Structured Light, Hyperspectral 3D Imaging</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Dispersed Structured Light for Hyperspectral 3D Imaging</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://shshin1210.github.io/suhyun_website/">Suhyun Shin</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://michaelcsj.github.io/">Seokjun Choi</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.cs.princeton.edu/~fheide/">Felix Heide</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.shbaek.com/">Seung-Hwan Baek</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>POSTECH,</span>
+            <span class="author-block"><sup>2</sup>Princeton University</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">CVPR 2024</span>
+            <!-- <span class="author-block"><sup>2</sup>Google Research</span> -->
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2311.18287.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Supple Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2311.18287.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supple</span>
+                </a>
+              </span>
+              
+             
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/shshin1210/DSL"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/drive/folders/18HVXZuSfRsm4V31oBXS9DjdMzSNVSjcO?usp=drive_link"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+
+      <img src="./static/images/teaser.PNG"
+           class="interpolation-image"
+           alt="Teaser."/>
+
+           <h2 class="subtitle is-full-width">
+        We introduce dispersed structured light, a low-cost high-quality hyperspectral 3D imaging method. 
+        By placing a diffraction grating film on a conventional camera-projector setup, we disperse structured-light patterns. 
+        Analyzing the images captured under the dispersed structured light enables accurate hyperspectral 3D reconstruction. 
+        (a) Capture configuration, (b) estimated hyperspectral image in sRGB, (c) comparison with spectroradiometer measurements, 
+        (d) estimated depth map, (e) estimated hyperspectral image.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: #f5f5f5; width: 100%;">
+  <div class="container is-max-desktop" style="padding: 0;">
+    <!-- Flexbox for centering content -->
+    <div class="columns is-centered" style="margin: 0; width:100%">
+      
+      <!-- Ensure full width, with content centered -->
+      <div class="column is-centered has-text-centered">
+        <h3 class="title is-3">Abstract</h3> <!-- Increased the heading size -->
+        <div class="content has-text-justified" style="font-size: 1.25em; line-height: 1.5;"> <!-- Increased font size and line height -->
+          <p>
+            Hyperspectral 3D imaging aims to acquire both depth and spectral information of a scene. However, existing methods are either prohibitively expensive and bulky
+            or compromise on spectral and depth accuracy. In this paper, we present Dispersed Structured Light (DSL), a cost-effective and compact method for accurate 
+            hyperspectral 3D imaging. DSL modifies a traditional projector-camera system by placing a sub-millimeter thick diffraction grating film in front of the projector. 
+            This configuration enables dispersing structured light based on light wavelength. To utilize the dispersed structured light, we devise a model for dispersive 
+            projection image formation and a per-pixel hyperspectral 3D reconstruction method. We validate DSL by instantiating a compact experimental prototype. 
+            DSL achieves spectral accuracy of 18.8 nm full-width half-maximum (FWHM) and depth error of 1 mm, outperforming prior work on practical hyperspectral 3D imaging.
+            DSL promises accurate and practical hyperspectral 3D imaging for diverse application domains, including computer vision and graphics, cultural heritage, geology, 
+            and biology.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Outer columns is-centered for full width -->
+    <div class="columns is-centered has-text-centered">
+      <!-- Centered full-width column -->
+      <div class="column is-full has-text-centered">
+        <!-- Centered title -->
+        <h2 class="title is-3">Imaging System</h2>
+        <!-- Centered paragraph -->
+
+          <div class="content has-text-justified " style="font-size: 1.25em; line-height: 1.5;">
+            <p>
+              We devise the proposed imaging system with the goals of compactness and affordability. We combine a conventional trichromatic camera with a trichromatic projector and a diffraction-grating film mounted in front. This configuration makes light from the projector undergo dispersion, and, as such, patterns emitted from the projector are spatially dispersed depending on wavelength.
+            </p>
+            
+            <!-- Centered image -->
+            <img 
+              src="./static/images/imaging_system.PNG"
+              alt="Network architecture"
+              style="max-width: 100%; height: auto;"
+            />
+
+            <!-- Centered paragraph -->
+            <p>
+              Our prototype consists of an RGB projector equipped with a diffraction grating film, and an RGB camera, as shown in the left and middle images. The right image shows an example projector pattern and its corresponding captured image, exhibiting clear first-order diffraction.
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="font-size: 1.25em;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">      
+      <!-- Full-width column with centered content -->
+      <div class="column is-full has-text-centered">
+        <!-- Centered title -->
+        <h2 class="title is-3">Hyperspectral 3D Imaging using Dispersed Structured Light</h2>
+        
+        <!-- Padding/Margin for separation -->
+        <p style="margin-bottom: 10px;"></p>
+
+        <div class="content has-text-justified " style="line-height: 1.5;">
+          <p>
+            White scan line pattern for hyperspectral imaging and dispersed structured light for depth imaging.
+          </p>
+        </div>
+        <!-- Centered content with inner `columns` also centered -->
+        <div class="columns is-centered" style="justify-content: center;">
+          <div class="column">
+            <div class="content">
+              <!-- Centered heading -->
+              <h3 class="title is-4 has-text-centered">White Scanline Pattern</h3>
+              <!-- Video centered with text alignment -->
+              <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/color_checker_sl.mp4" type="video/mp4">
+              </video>
+
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="content">
+              <!-- Centered heading -->
+              <h3 class="title is-4 has-text-centered">Dispersed Structured Light</h3>
+              <!-- Centered video -->
+              <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/color_checker_bc.mp4" type="video/mp4">
+              </video>
+
+              <!-- Centered paragraph -->
+
+            </div>
+          </div>
+        </div>
+        
+        <p style="margin-bottom: 10px;"></p>
+        <!-- Centered heading and video -->
+        <h3 class="title is-4 has-text-centered">Hyperspectral intensity of color checker</h3>
+
+          <img 
+          src="./static/images/color_checker_result2.png"
+          alt="Network architecture"
+          style="width: 100%; height: auto;"
+          />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- scene 1 -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <!-- Ensure this column takes full width -->
+      <div class="column is-full">
+        <!-- Center the title text -->
+        <h2 class="title is-3 has-text-centered">Hyperspectral 3D Imaging Results</h2>
+
+        <!-- Scene 1 -->
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content">
+              <!-- Centered heading -->
+              <h3 class="title is-4 has-text-centered">White Scanline Pattern</h3>
+
+              <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/flower_picture.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="content">
+              <!-- Centered heading -->
+              <h3 class="title is-4 has-text-centered">Dispersed Structured Light</h3>
+
+              <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/flower_picture_bc.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-bottom: 10px;"></p>
+        <!-- Centered heading and video -->
+        <h3 class="title is-4 has-text-centered">Reconstructed Results</h3>
+
+        <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+          <source src="./static/videos/flower_final.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- scene 2 -->
+<section class="section" style="background-color: #f5f5f5; width: 100%;">
+  <div class="container is-max-desktop" style="padding: 0;">
+    <!-- Flexbox for centering content -->
+    <div class="columns is-centered" style="margin: 0; width:100%">
+      
+      <!-- Ensure full width, with content centered -->
+      <div class="column is-centered has-text-centered">
+        <div class="columns is-centered" style="margin: 0;">
+          <div class="column is-centered">
+            <div class="content">
+              <h3 class="title is-4">White Scanline Pattern</h3>
+              <video autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/tree.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column is-centered">
+            <div class="content">
+              <h3 class="title is-4">Dispersed Structured Light</h3>
+              <video autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/tree_bc.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        
+        <p style="margin-bottom: 10px;"></p>
+        <h3 class="title is-4">Reconstructed Results</h3>
+        <video autoplay controls muted loop playsinline width="100%">
+          <source src="./static/videos/tree_final.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- scene 3 -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <!-- Ensure this column takes full width -->
+      <div class="column is-full">
+        <!-- Center the title text -->
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content">
+              <!-- Centered heading -->
+              <h3 class="title is-4 has-text-centered">White Scanline Pattern</h3>
+
+              <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/teddy_bear.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="content">
+              <!-- Centered heading -->
+              <h3 class="title is-4 has-text-centered">Dispersed Structured Light</h3>
+
+              <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/teddy_bc.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        
+        <p style="margin-bottom: 10px;"></p>
+        <!-- Centered heading and video -->
+        <h3 class="title is-4 has-text-centered">Reconstructed Results</h3>
+
+        <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+          <source src="./static/videos/teddy_final.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Youtube video -->
+
+
+<section class="youtube video">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+
+      <!-- Centered heading and video -->
+      <h2 class="title is-3 has-text-centered">DSL Presentation</h2>
+
+      <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+        <source src="./static/videos/dsl_youtube 1.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      @inproceedings{shin2024dispersed,
+        title={Dispersed Structured Light for Hyperspectral 3D Imaging},
+        author={Shin, Suhyun and Choi, Seokjun and Heide, Felix and Baek, Seung-Hwan},
+        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+        year={2024}
+      }
+      
+    </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content">
+          <p>
+            The website template is borrowed from 
+            <a href="https://github.com/nerfies/nerfies.github.io"><span class="dnerf">Nerfies</span></a>.
+            and licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

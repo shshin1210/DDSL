@@ -1,2 +1,2 @@
-.vscode
-*.npy
+.DS_store
+.idea
