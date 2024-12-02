@@ -70,7 +70,7 @@ You should prepare each M DDSL pattern reconstructed depth results in `npy` file
 
 We provide a example of dynamic scene dataset in [Example_of_Dynamic_scene_Dataset](https://drive.google.com/drive/folders/17pj5KUlZ_uX8pftq2ic9OumOyM24-VNF?usp=drive_link).
 
-Please make sure each methods RAFT, RAFT-Stereo, DDSL are places as:
+Please make sure each methods RAFT, RAFT-Stereo, DDSL are placed as:
 
 ```
 DDSL
