@@ -42,14 +42,14 @@ We capture dynamic scene under a group of M DDSL patterns and a single black pat
 
 Here we use software synchronization using programs that displays images in Python via OpenGL. More details for fast capture software synchronization is provided in Supplementary Document.
 
-Please refer to this repository [elerac/pyglimshow](https://github.com/elerac/pyglimshow) which provides code for fast capture.
+Please refer to this repository [elerac/pyglimshow](https://github.com/elerac/pyglimshow) which provides code for fast capture and clone this repository.
 
-For fast capture, prepare all imaging system configuration and run the code below by using files provided in directory [fast_capture](https://github.com/shshin1210/DDSL/tree/main/fast_capture)
+For fast capture, prepare all imaging system configuration and run the code below. This file is provided in directory [fast_capture](https://github.com/shshin1210/DDSL/tree/main/fast_capture).
 ```
 python procam_multiple_capture.py
 ```
 
-Make sure files inside the cloned directory looks like:
+Make sure python files prvided in [fast_capture](https://github.com/shshin1210/DDSL/tree/main/fast_capture) is inside the cloned directory :
 ```
 |-- cloned files ...
 |-- procam_multiple_capture.py
