@@ -1,5 +1,5 @@
 # Dense Dispersed Structured Light for Hyperspectral 3D Imaging of Dynamic Scenes
-[DSL](https://shshin1210.github.io/DSL/) (Dense Dispersed Structured Light for Hyperspectral 3D Imaging of Dynamic Scenes) is a method that reconstructs both spectral and geometry information of dynamic scenes.
+[DDSL](https://shshin1210.github.io/DDSL/) (Dense Dispersed Structured Light for Hyperspectral 3D Imaging of Dynamic Scenes) is a method that reconstructs both spectral and geometry information of dynamic scenes.
 
 You should follow the [requirements.txt](https://github.com/shshin1210/DDSL/blob/main/requirements.txt) provided there.
 
