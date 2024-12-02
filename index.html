@@ -81,7 +81,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2311.18287.pdf"
+                <a href="https://shshin1210.github.io/DDSL/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -92,7 +92,7 @@
 
               <!-- Supple Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2311.18287.pdf"
+                <a href="https://shshin1210.github.io/DDSL/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -104,7 +104,7 @@
              
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/shshin1210/DSL"
+                <a href="https://github.com/shshin1210/DDSL"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -115,7 +115,7 @@
               
               <!-- Dataset Link. -->
               <span class="link-block">
-                <a href="https://drive.google.com/drive/folders/18HVXZuSfRsm4V31oBXS9DjdMzSNVSjcO?usp=drive_link"
+                <a href="https://drive.google.com/drive/folders/17pj5KUlZ_uX8pftq2ic9OumOyM24-VNF"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
@@ -135,16 +135,14 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
 
-      <img src="./static/images/teaser.PNG"
+      <img src="./static/images/teaser.png"
            class="interpolation-image"
            alt="Teaser."/>
 
            <h2 class="subtitle is-full-width">
-        We introduce dispersed structured light, a low-cost high-quality hyperspectral 3D imaging method. 
-        By placing a diffraction grating film on a conventional camera-projector setup, we disperse structured-light patterns. 
-        Analyzing the images captured under the dispersed structured light enables accurate hyperspectral 3D reconstruction. 
-        (a) Capture configuration, (b) estimated hyperspectral image in sRGB, (c) comparison with spectroradiometer measurements, 
-        (d) estimated depth map, (e) estimated hyperspectral image.
+            We introduce a spectrally multiplexed Dense Dispersed Structured Light (DDSL), accurate hyperspectral 3D imaging method for
+            dynamic scenes. (a) Capture configuration, (b) estimated hyperspectral image in sRGB and depth image for dynamic scenes, (c) estimated
+            hyperspectral image, (d) comparison with spectroradiometer measurements.
       </h2>
     </div>
   </div>
@@ -160,14 +158,14 @@
         <h3 class="title is-3">Abstract</h3> <!-- Increased the heading size -->
         <div class="content has-text-justified" style="font-size: 1.25em; line-height: 1.5;"> <!-- Increased font size and line height -->
           <p>
-            Hyperspectral 3D imaging aims to acquire both depth and spectral information of a scene. However, existing methods are either prohibitively expensive and bulky
-            or compromise on spectral and depth accuracy. In this paper, we present Dispersed Structured Light (DSL), a cost-effective and compact method for accurate 
-            hyperspectral 3D imaging. DSL modifies a traditional projector-camera system by placing a sub-millimeter thick diffraction grating film in front of the projector. 
-            This configuration enables dispersing structured light based on light wavelength. To utilize the dispersed structured light, we devise a model for dispersive 
-            projection image formation and a per-pixel hyperspectral 3D reconstruction method. We validate DSL by instantiating a compact experimental prototype. 
-            DSL achieves spectral accuracy of 18.8 nm full-width half-maximum (FWHM) and depth error of 1 mm, outperforming prior work on practical hyperspectral 3D imaging.
-            DSL promises accurate and practical hyperspectral 3D imaging for diverse application domains, including computer vision and graphics, cultural heritage, geology, 
-            and biology.
+            Hyperspectral 3D imaging captures both depth maps and hyperspectral images, enabling comprehensive geometric and material analysis. 
+            Recent methods achieve high spectral and depth accuracy; however, they require long acquisition times—often over several minutes—or rely on large,
+            expensive systems, restricting their use to static scenes. We present Dense Dispersed Structured Light (DDSL), an accurate hyperspectral 3D imaging 
+            method for dynamic scenes that utilizes stereo RGB cameras and an RGB projector equipped with an affordable diffraction grating film.
+            We design spectrally multiplexed DDSL patterns that significantly reduce the number of required projector patterns, thereby accelerating acquisition speed.
+            Additionally, we formulate an image formation model and a reconstruction method to estimate a hyperspectral image and depth map from captured stereo images. 
+            As the first practical and accurate hyperspectral 3D imaging method for dynamic scenes, we experimentally demonstrate that DDSL achieves a spectral resolution
+            of 15.5 nm full width at half maximum (FWHM), a depth error of 4 mm, and a frame rate of 6.6 fps.
           </p>
         </div>
       </div>
