@@ -37,7 +37,7 @@ All calibrated paramters should be prepared:
 We provide an expample calibration parameters in our [DDSL Calibration Parameters](https://drive.google.com/drive/folders/17pj5KUlZ_uX8pftq2ic9OumOyM24-VNF?usp=drive_link).
 
 
-## Dataset Acquisition
+## Dataset Acquisition (Fast capture)
 We capture dynamic scene under a group of M DDSL patterns and a single black pattern at 6.6 fps.
 
 Here we use software synchronization using programs that displays images in Python via OpenGL. More details for fast capture software synchronization is provided in Supplementary Document.
