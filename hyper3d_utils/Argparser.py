@@ -67,7 +67,7 @@ class Argument:
         self.parser.add_argument('--min_wvl', help="minimum wavelength reconstructed(nm)", type=int, default=440)
         self.parser.add_argument('--max_wvl', help="maximum wavelength reconstructed(nm)", type=int, default=660)
         self.parser.add_argument('--wvl_interval', help="wavelength interval(nm)", type=int, default=10)
-        self.parser.add_argument('--target_idx', help="target illumination captured index for optical flow", type = int, default=4)
+        self.parser.add_argument('--target_idx', help="target illumination captured index (M/2) for optical flow", type = int, default=4)
 
         # directory
         self.parser.add_argument('--real_data_dir', help="real captured data directory", type = str, default="../DDSL/dataset/data/realdata/%s/camera2/dynamic%02d")
@@ -84,9 +84,9 @@ class Argument:
         self.parser.add_argument('--weight_spectral', help="spectral axis weight", type = int, default=7)
 
         # spatial weight
-        self.parser.add_argument('--weight_spatial_front', help="spatial axis weight", type = int, default=0.5)
-        self.parser.add_argument('--weight_spatial_mid', help="spatial axis weight", type = int, default=0.25)
-        self.parser.add_argument('--weight_spatial_back', help="spatial axis weight", type = int, default=0.05)
+        self.parser.add_argument('--weight_spatial', help="spatial axis weight", type = int, default=0.1)
+        # self.parser.add_argument('--weight_spatial_mid', help="spatial axis weight", type = int, default=0.25)
+        # self.parser.add_argument('--weight_spatial_back', help="spatial axis weight", type = int, default=0.05)
 
         self.parser.add_argument('--depth_scalar_value', help="depth scalar value for inverse law", type = int, default= 5)
 

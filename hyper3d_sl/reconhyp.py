@@ -5,6 +5,7 @@ import cv2, os, sys
 import torch
 import imageio
 import time
+from tqdm import tqdm
 import torchvision.transforms as tf
 from scipy import interpolate
 
@@ -30,19 +31,10 @@ class HypReconDynamic():
         # camera
         self.cam_H, self.cam_W = args.crop_cam_H, args.crop_cam_W
 
-        # depth
-        self.depth_start, self.depth_end = args.depth_start, args.depth_end
-        self.depth_arange = np.arange(self.depth_start, self.depth_end +1, 1)
-
         # directory
-        self.real_data_dir = args.real_data_dir
-        self.npy_dir = args.npy_dir
         self.illum_directory_dir = args.illum_dir
-        self.radiometric_data_dir = args.radiometric_data_dir
         
         # datas
-        self.x_centers_ddsl = np.load(os.path.join(self.illum_directory_dir, 'x_centers_ddsl_8patt.npy'))
-        self.x_centers_dsl = np.load(os.path.join(self.illum_directory_dir, 'x_centers_dsl_%s.npy'%args.cal_date))
         self.wvls = np.arange(args.min_wvl, args.max_wvl+1, args.wvl_interval)
         self.n_illum = args.n_illum
         self.n_groups = len(os.listdir(args.dynamic_dir%args.date)) # Number of groups in the dynamic scene
@@ -87,12 +79,12 @@ class HypReconDynamic():
         
         final_masking_ftn = np.zeros(shape=(len(self.wvls), self.cam_H, self.cam_W, self.n_illum))
         for i in range(self.n_illum):
-            if i == args.target_idx:
+            if i == self.args.target_idx:
                 final_masking_ftn[...,i] = masking_ftn[i,...,i]
             else:
-                if i < args.target_idx:
+                if i < self.args.target_idx:
                     changed_idx = i
-                elif i > args.target_idx:
+                elif i > self.args.target_idx:
                     changed_idx = i -1
                 final_masking_ftn[...,i] = masking_ftn[i,:,map_xy_list[changed_idx,:,:,1],map_xy_list[changed_idx,:,:,0],i].transpose(2,0,1)
         
@@ -149,7 +141,7 @@ class HypReconDynamic():
         GT_I_RGB_FIRST_tensor = torch.tensor(ddsl_data.reshape(self.n_illum, self.cam_H*self.cam_W, 3).transpose(1,0,2), device=self.device) # HxW, 13(patt num), 3
 
         # weight
-        weight_spectral = args.weight_spectral # 0.5
+        weight_spectral = self.args.weight_spectral # 0.5
         weight_first = 1
 
         loss_vis = []
@@ -170,7 +162,7 @@ class HypReconDynamic():
 
             y_dL2 = (abs(opt_param.reshape(self.cam_H, self.cam_W, -1)[:-1] - opt_param.reshape(self.cam_H, self.cam_W, -1)[1:])).sum()/(self.cam_H*self.cam_W)
             x_dL2 = (abs(opt_param.reshape(self.cam_H, self.cam_W, -1)[:,:-1] - opt_param.reshape(self.cam_H, self.cam_W, -1)[:,1:])).sum()/(self.cam_H*self.cam_W)
-            loss += args.weight_spatial*(x_dL2+y_dL2)
+            loss += self.args.weight_spatial*(x_dL2+y_dL2)
             
             hyp_dL2 = ((opt_param[:,:-1] - opt_param[:,1:])**2).sum()/ (self.cam_H*self.cam_W)
             loss += weight_spectral*(hyp_dL2)
@@ -221,7 +213,7 @@ class HypReconDynamic():
         optical_flow_list, full_mapping_xy_list = self.black_opt_flow.get_mapping_list(interpolated_flow_list)
         
         hyp_recon_result = np.zeros(shape=(self.n_groups-1, self.cam_H, self.cam_W, len(self.wvls)))
-        for n_group in range(1, self.n_groups):
+        for n_group in tqdm(range(1, self.n_groups)):
             depths = self.get_data.get_depth(date, n_group)
             first_real_img_illum_idx = self.get_data.get_dsl_scene_dependent_mapping(depths, dynamic)
             
