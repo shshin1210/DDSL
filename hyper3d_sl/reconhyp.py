@@ -213,7 +213,7 @@ class HypReconDynamic():
         optical_flow_list, full_mapping_xy_list = self.black_opt_flow.get_mapping_list(interpolated_flow_list)
         
         hyp_recon_result = np.zeros(shape=(self.n_groups-1, self.cam_H, self.cam_W, len(self.wvls)))
-        for n_group in tqdm(range(1, self.n_groups)):
+        for n_group in range(1, self.n_groups):
             depths = self.get_data.get_depth(date, n_group)
             first_real_img_illum_idx = self.get_data.get_dsl_scene_dependent_mapping(depths, dynamic)
             
