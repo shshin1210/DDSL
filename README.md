@@ -94,7 +94,7 @@ We estimate optical flow between each black pattern captured images by RAFT. We 
 
 If you have prepared all datasets and imaging system configurataion, start reconstructing hyperspectral reflectance:
 ```
-python hyp_recon_dynamic.py
+python main.py
 ```
 
 replace any configuration changes in ArgumentParser.
