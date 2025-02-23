@@ -8,10 +8,12 @@ import time
 import torchvision.transforms as tf
 from scipy import interpolate
 
-sys.path.append('RAFT')
-from core.raft import RAFT
-from core.utils import flow_viz
-from core.utils.utils import InputPadder
+sys.path.append('DDSL')
+sys.path.append('../RAFT')
+sys.path.append('../RAFT/raft_core')
+
+from raft_core.raft import RAFT
+from raft_core.utils.utils import InputPadder
 
 class HypReconDynamic():
     def __init__(self, args):
@@ -19,7 +21,7 @@ class HypReconDynamic():
         self.args = args
         
         # device
-        self.device = args.device
+        self.device = args.cuda_device
                 
         # camera
         self.cam_H, self.cam_W = args.cam_H, args.cam_W
@@ -539,6 +541,7 @@ class HypReconDynamic():
             - gauss_masking_ftn : scene dependent dispersive-aware mapping function
         """
         
+        import pdb;pdb.set_trace()
         date = self.args.date
         dynamic = False
         

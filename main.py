@@ -8,9 +8,6 @@ import time
 import torchvision.transforms as tf
 from scipy import interpolate
 
-sys.path.append('RAFT')
-sys.path.append('RAFT-Stereo')
-
 from hyper_utils import Argparser
 from hyper3d import recon3d
 from hyper3d import reconhyp
@@ -18,12 +15,13 @@ from hyper3d import reconhyp
 def main(args):
     
     # reconstruct 3d information by RAFT-Stereo
-    recon3d.recon_depth(args)
+    # recon3d.recon_depth(args)
     print('depth reconstructed...')
     
-    # hyperspectral reconstruction
+    # reconstruct hyperspectral information
     hyp_recon = reconhyp.HypReconDynamic(args).hyp_recon_dynamic()
-    print('hyperspectral reconstructed...')
+    # print('hyperspectral reconstructed...')
+    
     
 if __name__ == "__main__":
     argument = Argparser.Argument()

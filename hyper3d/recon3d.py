@@ -10,6 +10,7 @@ import torch
 import torchvision.transforms.functional as f
 from tqdm import tqdm
 from pathlib import Path
+
 from raft_stereo import RAFTStereo
 from utils.utils import InputPadder
 from PIL import Image
@@ -69,8 +70,8 @@ def recon_depth(args):
                 
             if not os.path.exists(os.path.join(output_directory, imfile1.split('/')[-4], imfile1.split('/')[-2])):
                 os.makedirs(os.path.join(output_directory, imfile1.split('/')[-4], imfile1.split('/')[-2]))   
-                
-            # 날짜별로, dynamic scene 별로 서로 다른 폴더를 만들어서 저장하게끔 만드는 법
+            
+            # save files
             np.save(os.path.join(output_directory, imfile1.split('/')[-4], imfile1.split('/')[-2], "%s.npy"%(imfile1.split('/')[-1][:-4])), flow_up.cpu().numpy().squeeze())
             plt.imshow(-flow_up.cpu().numpy().squeeze(), cmap='jet', vmin=0, vmax=200)
             plt.colorbar(fraction=0.03, pad=0.04)
