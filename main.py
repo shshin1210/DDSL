@@ -8,9 +8,9 @@ import time
 import torchvision.transforms as tf
 from scipy import interpolate
 
-from hyper_utils import Argparser
-from hyper3d import recon3d
-from hyper3d import reconhyp
+from hyper3d_utils import Argparser
+from hyper3d_sl import recon3d
+from hyper3d_sl import reconhyp
 
 def main(args):
     

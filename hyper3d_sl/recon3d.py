@@ -16,9 +16,9 @@ from utils.utils import InputPadder
 from PIL import Image
 from matplotlib import pyplot as plt
 
-from hyper_utils import Argparser
-from hyper_utils import rectify
-from hyper_utils import inverse_rectify
+from hyper3d_utils import Argparser
+from hyper3d_utils import rectify
+from hyper3d_utils import inverse_rectify
 
 def load_image(imfile, args):
     img = np.array(Image.open(imfile)).astype(np.uint8)
