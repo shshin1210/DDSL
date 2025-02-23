@@ -80,7 +80,7 @@ RAFT
 RAFT-Stereo
 |-- ...
 ```
-### CHECK
+### Caution!
 You also need to make sure that the original ```RAFT/core``` should be changed to ```RAFT/raft_core``` since there are duplicated folder names in RAFT-Stereo.
 
 ## Hyperspectral Reconstruction
