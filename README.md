@@ -49,7 +49,7 @@ For fast capture, prepare all imaging system configuration and run the code belo
 python procam_multiple_capture.py
 ```
 
-Make sure python files prvided in [fast_capture](https://github.com/shshin1210/DDSL/tree/main/fast_capture) is inside the cloned directory :
+Make sure python files provided in [fast_capture](https://github.com/shshin1210/DDSL/tree/main/fast_capture) is inside the cloned directory :
 ```
 |-- cloned files ...
 |-- procam_multiple_capture.py
