@@ -74,14 +74,14 @@ Please make sure each methods RAFT, RAFT-Stereo, DDSL are placed as:
 
 ```
 DDSL
-|-- dataset
-|-- fast_capture
-|-- hyp_recon_dynamic.py
+|-- ...
 RAFT
 |-- ...
 RAFT-Stereo
 |-- ...
 ```
+### Caution!
+You also need to make sure that the original ```RAFT/core``` should be changed to ```RAFT/raft_core``` since there are duplicated folder names in RAFT-Stereo.
 
 ## Hyperspectral Reconstruction
 For Hyperspectral reconstruction of dynamic scenes under group of M DDSL patterns and a single black pattern, we need optical flow estimation.
