@@ -15,12 +15,12 @@ from hyper3d_sl import reconhyp
 def main(args):
     
     # reconstruct 3d information by RAFT-Stereo
-    # recon3d.recon_depth(args)
+    recon3d.recon_depth(args)
     print('depth reconstructed...')
     
     # reconstruct hyperspectral information
     hyp_recon = reconhyp.HypReconDynamic(args).hyp_recon_dynamic()
-    # print('hyperspectral reconstructed...')
+    print('hyperspectral reconstructed...')
     
     
 if __name__ == "__main__":
